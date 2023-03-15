@@ -18,18 +18,33 @@ public class CalcController {
     }
     @GetMapping(path = "/plus")
     public String sum (@RequestParam(value = "num1",required = false) String num1, @RequestParam (value = "num2",required = false) String num2) {
-        return calcService.sum(num1, num2);
+        if(num1 == null || num2 == null){
+            return "Пожалуйста, заполните оба параметра!";
+        }
+        return num1 + " + " + num2 + " = " + calcService.sum(num1, num2);
     }
     @GetMapping(path = "/minus")
     public String sub (@RequestParam(value = "num1",required = false) String num1, @RequestParam (value = "num2",required = false) String num2) {
-        return calcService.sub(num1, num2);
+        if(num1 == null || num2 == null){
+            return "Пожалуйста, заполните оба параметра!";
+        }
+        return num1 + " - " + num2 + " = " + calcService.sub(num1, num2);
     }
     @GetMapping(path = "/multiply")
     public String mult (@RequestParam(value = "num1", required = false) String num1, @RequestParam (value = "num2",required = false) String num2) {
-        return calcService.mult(num1, num2);
+        if(num1 == null || num2 == null){
+            return "Пожалуйста, заполните оба параметра!";
+        }
+        return num1 + " * " + num2 + " = " + calcService.mult(num1, num2);
     }
     @GetMapping(path = "/divide")
     public String div (@RequestParam(value = "num1",required = false) String num1, @RequestParam (value = "num2",required = false) String num2) {
-        return calcService.div(num1, num2);
+        if(num1 == null || num2 == null){
+            return "Пожалуйста, заполните оба параметра!";
+        }
+        if(Integer.parseInt(num2) == 0) {
+            return "Ошибка! На 0 делить нельзя!";
+        }
+        return num1 + " / " + num2 + " = " + calcService.div(num1, num2);
     }
 }
