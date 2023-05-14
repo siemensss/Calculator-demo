@@ -1,5 +1,6 @@
-package calculator.my.calculatordemo;
+package calculator.my.calculatordemo.controller;
 
+import calculator.my.calculatordemo.service.CalcService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,9 +42,6 @@ public class CalcController {
     public String div (@RequestParam(value = "num1",required = false) String num1, @RequestParam (value = "num2",required = false) String num2) {
         if(num1 == null || num2 == null){
             return "Пожалуйста, заполните оба параметра!";
-        }
-        if(Integer.parseInt(num2) == 0) {
-            return "Ошибка! На 0 делить нельзя!";
         }
         return num1 + " / " + num2 + " = " + calcService.div(num1, num2);
     }
